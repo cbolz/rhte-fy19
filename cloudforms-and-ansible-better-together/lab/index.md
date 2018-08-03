@@ -24,6 +24,12 @@
         - [Add a Button Group](#add-a-button-group)
         - [Add a new Button to the Button Group](#add-a-new-button-to-the-button-group)
         - [Test the Ansible Button Customization](#test-the-ansible-button-customization)
+    - [Add dynamic visibility and enablement](#add-dynamic-visibility-and-enablement)
+        - [Button enablement](#button-enablement)
+        - [Button visibility](#button-visibility)
+        - [Role based access control](#role-based-access-control)
+        - [Configure Enablement](#configure-enablement)
+        - [Configure Visibility](#configure-visibility)
     - [Improve the Service Dialog](#improve-the-service-dialog)
         - [Edit the Service Dialog](#edit-the-service-dialog)
         - [Create improved Service Catalog Item](#create-improved-service-catalog-item)
@@ -715,6 +721,42 @@ We want to test the resulting customization and see how it works from a user poi
 :heavy_check_mark: ***NOTE*** Ansible is idempotent - this means you can run the same Playbook many times and Ansible detects if the desired state was already reached. In this lab, no changes are necessary, because the package httpd is already installed.
 
 This concludes this part of the Ansible lab.
+
+## Add dynamic visibility and enablement
+
+Starting with CloudForms 4.6, we can make custom buttons visible if certain requirements are met. We can also make the button active or inactive as needed. Both features significantly improve the user experience by simplifying the interface and making it more dynamic.
+
+### Button enablement
+
+The Enablement expression is validated to enable or disable the button based on the specified check. This allows you to enable the button only if some specific requirements are met. In the example below, we want to run an Ansible Playbook inside the VM. The expression validates the VM Power State and the button will be disabled if the VM is not powered on. An additional text will inform the user why the button is disabled and how to solve the issue.
+
+### Button visibility
+
+The Visibility allows you to define an expression which is validated to decide if the button should be shown at all. For example, if the guest Operating System is not Linux, the Ansible Playbook used will not work. If CloudForms detects a non-Linux VM, the menu will not be shown at all.
+
+### Role based access control
+
+Note that the visibility settings on the bottom of the dialog are the same as in previous versions. This option allows us to make the button only available for certain user roles, for example administrators, operators or normal users.
+
+### Configure Enablement
+
+Let's configure an regular expression which verifies the Virtual Machine is powered on.
+
+1. Navigate to ***Automation*** -> ***Automate*** -> ***Customization***
+
+    ![navigate to Customization](../../common/img/navigate-to-customization.png)
+
+    :heavy_check_mark: ***NOTE*** You should already be in this menu if you followed the previous steps
+
+1. Click on the "Tools" Button Group you created in the previous lab
+
+    ![navigate to tools button group](../../common/img/tools-button-group-overview.png)
+
+1. Click on ***Configuration*** -> ***Add a new Button***
+
+    ![edit custom button](../../common/img/edit-button-enablement.png)
+
+### Configure Visibility
 
 ## Improve the Service Dialog
 
