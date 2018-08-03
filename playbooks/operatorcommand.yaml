@@ -1,0 +1,10 @@
+---
+- name: execute operator command
+  hosts: all
+  vars: 
+    command: echo hello world
+
+  tasks:
+  - name: run this command and ignore the result
+    shell: exec {{command}} > /tmp/ansible-exec-command.log 2>&1
+

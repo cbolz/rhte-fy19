@@ -1,0 +1,11 @@
+---
+- name: Enforce SELinux
+  hosts: all
+  
+  tasks:
+  - name: make sure SELinux is set to enforced
+    lineinfile:
+      dest: /etc/sysconfig/selinux
+      regexp: "^SELINUX="
+      line: "SELINUX=enforcing"
+      state: present

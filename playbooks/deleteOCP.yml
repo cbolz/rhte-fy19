@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  connection: local
+  vars: 
+    manageiq_url: https://1cfme46-summitcloudformswi-aic4lddc.srv.ravcloud.com
+    manageiq_user: admin
+  vars_prompt:
+    - name: "manageiq_password"
+      prompt: "what is the ManageIQ Password?"
+  tasks:
+  - name: Delete a provider in ManageIQ
+    manageiq_provider:
+      state: 'absent'
+      name: 'OpenShift'
+      manageiq_connection:
+        url: "{{ manageiq_url }}"
+        username: "{{ manageiq_user }}"
+        password: "{{ manageiq_password }}"
+        verify_ssl: False
