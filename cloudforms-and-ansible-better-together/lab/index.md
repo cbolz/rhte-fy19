@@ -350,7 +350,7 @@ To be able to run Ansible Playbooks, they have to become available in CloudForms
 
     ***URL:***
 
-        https://github.com/cbolz/summit-fy19.git
+        https://github.com/cbolz/rhte-fy19.git
 
     Update on Launch causes CloudForms to check for new Playbooks or updated Playbooks before a Playbook is launched.
 
@@ -752,9 +752,27 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 
     ![navigate to tools button group](../../common/img/tools-button-group-overview.png)
 
-1. Click on ***Configuration*** -> ***Add a new Button***
+1. Click on ***Configuration*** -> ***Edit this Button***
 
     ![edit custom button](../../common/img/edit-button-enablement.png)
+
+1. Click on the ***Advanced*** tab
+
+1. Click on ***Expression***
+
+1. Build the following Expression:
+
+    Field: VM and Instance - Power State = on
+
+    ![enablement expression power on](../../common/enablement-expression-power-on.png)
+
+    :warning: ***WARINING*** Don't forget to clik on the check mark to save the expression!
+
+1. Add Disabled Button Text: VM must be powered on to run Ansible Playbook
+
+    ![save enablement expression](../../common/save-enablement-expression.png)
+
+1. Click ***Save***
 
 ### Configure Visibility
 
