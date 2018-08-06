@@ -766,7 +766,7 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 
     ![enablement expression power on](../../common/img//enablement-expression-power-on.png)
 
-    :warning: ***WARINING*** Don't forget to clik on the check mark to save the expression!
+    :warning: ***WARINING*** Don't forget to click on the check mark to save the expression!
 
 1. Add Disabled Button Text: VM must be powered on to run Ansible Playbook
 
@@ -775,6 +775,38 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 1. Click ***Save***
 
 ### Configure Visibility
+
+The install package Playbook will only work on RHEL 7 Virtual Machines. It will fail on RHEL 6 Virtual Machines, because the lab internal YUM mirror does not have a copy of the relevant channels.
+
+Since this is a known limitation, it is a good idea to not show the button if the guest Operating System of the selected Virtual Machine does not meet the requirements. With the new "Visibility" expression filter, this is easy to implement.
+
+1. Navigate to ***Automation*** -> ***Automate*** -> ***Customization***
+
+    ![navigate to Customization](../../common/img/navigate-to-customization.png)
+
+    :heavy_check_mark: ***NOTE*** You should already be in this menu if you followed the previous steps
+
+1. Click on the "Tools" Button Group you created in the previous lab
+
+    ![navigate to tools button group](../../common/img/tools-button-group-overview.png)
+
+1. Click on ***Configuration*** -> ***Edit this Button***
+
+    ![edit custom button](../../common/img/edit-button-enablement.png)
+
+1. Click on the ***Advanced*** tab
+
+1. in the ***Visibility*** section of the dialog, create the following expression:
+
+    Field: VM and Instance.OS: Product Name - STARTS WITH "rhel_7"
+
+    ![Visibility expression](../../common/img/visibility-expression-rhel7.png)
+
+    :warning: ***WARINING*** Don't forget to click on the check mark to save the expression!
+
+    ![save enablement expression](../../common/img/save-visibility-expression.png)
+
+1. Click ***Save***
 
 ## Improve the Service Dialog
 
