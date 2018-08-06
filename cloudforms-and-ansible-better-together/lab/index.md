@@ -764,13 +764,13 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 
     Field: VM and Instance - Power State = on
 
-    ![enablement expression power on](../../common/enablement-expression-power-on.png)
+    ![enablement expression power on](../../common/img//enablement-expression-power-on.png)
 
     :warning: ***WARINING*** Don't forget to clik on the check mark to save the expression!
 
 1. Add Disabled Button Text: VM must be powered on to run Ansible Playbook
 
-    ![save enablement expression](../../common/save-enablement-expression.png)
+    ![save enablement expression](../../common/img/save-enablement-expression.png)
 
 1. Click ***Save***
 
