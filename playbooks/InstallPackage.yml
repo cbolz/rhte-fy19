@@ -5,5 +5,13 @@
   - package_name: httpd
 
   tasks:
+  - name: fetch mirror config
+    get_url:
+      url: http://workstation.example.com/pub/mirror.repo
+      dest: /etc/yum.repos.d/mirror.repo
+
+  - name: enable repos
+    shell: yum-config-manager --enable rhel-7-server-extras-rpms --enable rhel-7-server-optional-rpms &> /dev/null
+
   - name: install package {{ package_name }}
     yum: name={{ package_name }} state=present
