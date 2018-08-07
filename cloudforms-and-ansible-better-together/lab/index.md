@@ -35,6 +35,12 @@
         - [Create improved Service Catalog Item](#create-improved-service-catalog-item)
         - [Update the Button definition](#update-the-button-definition)
         - [Test the improved Button](#test-the-improved-button)
+    - [Run an Ansible Playbook during VM provisioning](#run-an-ansible-playbook-during-vm-provisioning)
+        - [Create a new Automate Domain](#create-a-new-automate-domain)
+        - [Copy VM Provisioning State Machine](#copy-vm-provisioning-state-machine)
+        - [Copy CheckProvisioned Method](#copy-checkprovisioned-method)
+        - [Create the Ansible Playbook Method](#create-the-ansible-playbook-method)
+        - [Modify the Schema](#modify-the-schema)
     - [Build a Service Catalog to create and delete users](#build-a-service-catalog-to-create-and-delete-users)
         - [Create a Service Catalog Item for the Playbook](#create-a-service-catalog-item-for-the-playbook)
         - [Order the "create user" Service Catalog Item](#order-the-create-user-service-catalog-item)
@@ -999,6 +1005,158 @@ As the last step, we have to change the definition of our button, to point to th
 This concludes this part of the Ansible lab.
 
 :+1: ***OPTIONAL*** Feel free to repeat this part of the lab with a different package name. You could use "screen" as an example instead of httpd - or some other package you want to install.
+
+## Run an Ansible Playbook during VM provisioning
+
+With the integration of Ansible into CloudForms, we want to make it easier for customers and partners to modify out of the box behavior and make it easy to integrate with third party solutions.
+
+In this part of the lab, we want to run an Ansible Playbook during VM provisioning to show how to modify the State Machine and how we can use Ansible Playbooks.
+
+### Create a new Automate Domain
+
+Since the Automate Domains shipped with CloudForms are read only, we have to create our own Domain first.
+
+1. Navigate to ***Automation*** -> ***Automate***
+
+    ![Navigate to Automate](../../common/img/navigate-to-automate.png)
+
+1. Click on ***Configuration*** -> ***Add a new Domain***
+
+    ![add new automate domain](../../common/img/add-new-automate-domain.png)
+
+1. Enter the following details:
+
+    ***Name:*** Lab
+
+    ***Description:*** Lab Domain
+
+    ***Enabled:*** Check
+
+    ![add new lab domain](../../common/img/add-new-lab-automate-domain.png)
+
+1. Click ***Add***
+
+### Copy VM Provisioning State Machine
+
+To be able to make changes to the State Machine, we have to copy it to our writeable Domain first.
+
+1. Navigate to the VM Provisioning State Machine:
+
+    ***ManageIQ*** -> ***Infrastructure*** -> ***VM*** -> ***Provisioning*** -> ***StateMachines*** -> ***VMProvision_VM*** -> ***Provision VM from Template (template)***
+
+    ![navigate to provision from template](../../common/img/navigate-to-provision-vm-from-template.png)
+
+1. Click on ***Configuration*** -> ***Copy this Instance***
+
+    ![copy provision from template instance](../../common/img/copy-provivision-vm-from-template-instance.png)
+
+    :warning: ***WARNING*** Make sure you highlight the "Provision VM from Template (template)" instance when initiating the copy!
+
+1. Accept the defaults when confirming the copy
+
+    ![copy prevision from](../../common/img/copy-provision-instance.png)
+
+1. Click ***Copy*** to confirm
+
+1. After the copy was completed, you should see a confirmation page
+
+    ![confirmation of copy](../../common/img/confirmation-copy-provision-instance.png)
+
+### Copy CheckProvisioned Method
+
+The out of the box code of CloudForms will assume a VM was properly created, when it was successfully copied. Since we want to run an Ansible Playbook inside the deployed Virtual Machine, we have to add an additional check. The State Machine should only continue if the VM has an IP address assigned.
+
+1. We also need a copy of the CheckProvisioned method, to do that, navigate to     ***ManageIQ*** -> ***Infrastructure*** -> ***VM*** -> ***Provisioning*** -> ***StateMachines*** -> ***Methods*** -> ***CheckProvisioned (check_provisioned)***
+
+    ![navigate to check provisioned](../../common/img/navgiate-to-checkprovisioned.png)
+
+1. Click on ***Configuration*** -> ***Copy this Method***
+
+    ![copy checkprovisioned Method](../../common/img/copy-check-provisioned-method.png)
+
+1. Keep the settings unmodified and click on ***Copy***
+
+    ![copy checkprovisioned Method details](../../common/img/copy-check-provisioned-method-details.png)
+
+1. After the copy was created, you should see a confirmation message
+
+    ![copy checkprovisioned confirmation](../../common/img/copy-check-provisioned-confirmation.png)
+
+TODO: Add instructions on how to change the code
+
+### Create the Ansible Playbook Method
+
+Starting with CloudForms 4.6 we can create Methods of type "Playbook" which, instead of running Ruby code, execute an Ansible Playbook.
+
+1. Since we're already in the correct folder, let's create a new Method to run an Ansible Playbook now. Click on ***Configuration*** -> ***Add a new Method***
+
+    ![add new Ansible method](../../common/img/add-new-ansible-method.png)
+
+1. Switch the Method Type to "Playbook"
+
+    ![select playbook method type](../../common/img/select-ansible-method-type.png)
+
+1. Use the following details to fill out the form.
+
+    ***Name:*** install_package
+
+    ***Display Name:*** Intall Package
+
+    ***Repository:*** Github
+
+    ***Playbook:*** playbooks/InstallPackage.yml
+
+    ***Machine Credentials:*** VIrtual Machine Credentials
+
+    ***Hosts:*** Specify host values and enter the following string into the text field:
+
+        ${/#miq_provision.destination.ipaddresses.first}
+
+    :warning: ***WARNING*** Pay attention to the special characters or the Playbook will not be executed on the correct Virtual Machine! The expression will configure CloudForms to use the first IP addresses of the provisioned Virtual Machine as the limit parameter when executing the Playbook.
+
+    ***Max TTL (mins):*** 30
+
+1. Enter the following ***Input Parameters***:
+
+    ***Input Name:*** package_name
+
+    ***Default Value:*** httpd
+
+    :warning: ***WARNING*** Don't forget to click on the blue plus (+) icon to save the Input Parameter
+
+1. Click ***Add*** to create the Ansible Playbook Method
+
+    ![create ansible playbook method](../../common/img/create-ansible-playbook-method.png)
+
+1. To be able to call the Method from a StateMachine, we need an associated Instance. Click on the ***Instances*** tab and ***Configuration*** -> ***Add a new Instance***
+
+    ![add new playbook instance](../../common/img/add-new-playbook-instance.png)
+
+1. Enter the following details into the Dialog:
+
+    ***Name:*** install_package
+
+    ***Display Name:*** Install Package
+
+    In the table search the row "execute" and put "install_package" into the "value" field
+
+    ![add execute value](../../common/img/add-playbook-instance-execute-value.png)
+
+1. Click ***Add*** to save the Instance
+
+### Modify the Schema
+
+To run the Ansible Playbook during Virtual Machine Provisioning, we have to add an additional state to the State Machine. 
+
+1. Switch to the ***Schema*** tab of the page
+
+    ![edit provision class schema](../../common/img/switch-to-schema-edit.png)
+
+1. Click on ***Configuration*** -> ***Edit selected Schema***
+
+    ![edit selected schema](../../common/img/edit-provision-class-schema.png)
+
+TODO: Missing steps here
 
 ## Build a Service Catalog to create and delete users
 
