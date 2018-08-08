@@ -1186,7 +1186,15 @@ We want to verify the applied changed by deploying a Virtual Machine and check i
 
 1. You will be redirected to the Requests page. You can use the ***Refresh*** button on the top of the page, since it does not automatically reload, to watch your request progressing.
 
-1. TODO: instructions on how to verify
+1. In this lab environment, the Virtual Machine is not accessible directly from the internet. Choose one or more of the following options to verify the Playbook did execute
+
+    1. Open a remote Console: Navigate to the Virtual Machine you just ordered and click on ***Access*** -> ***VM Access***
+
+        :heavy_check_mark: ***NOTE*** If you do this the first time, your Web Browser might block the Popup Window!
+
+    1. Perform Smart State Analysis: Navigate to the Virtual Machine you just ordered and click on ***Configuration*** -> ***Perform SmartState Analysis***. Thie action can take a few minutes to complete. After it finished, you should see the list of installed packages and can verify httpd is on the list
+
+    1. Check the log files: First you will have to SSH into the workstation and from there you can log into CloudForms. You should find the hostnames in the RHPDS details. The Ansible logs can be found in /var/lib/awx/job_status.
 
 ## Advanced labs
 
