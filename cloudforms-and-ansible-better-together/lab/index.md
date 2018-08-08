@@ -41,6 +41,8 @@
         - [Copy CheckProvisioned Method](#copy-checkprovisioned-method)
         - [Create the Ansible Playbook Method](#create-the-ansible-playbook-method)
         - [Modify the Schema](#modify-the-schema)
+        - [Change Schema Sequence](#change-schema-sequence)
+        - [Test the updated Virtual Machine Provisioning State Machine](#test-the-updated-virtual-machine-provisioning-state-machine)
     - [Build a Service Catalog to create and delete users](#build-a-service-catalog-to-create-and-delete-users)
         - [Create a Service Catalog Item for the Playbook](#create-a-service-catalog-item-for-the-playbook)
         - [Order the "create user" Service Catalog Item](#order-the-create-user-service-catalog-item)
@@ -1082,7 +1084,30 @@ The out of the box code of CloudForms will assume a VM was properly created, whe
 
     ![copy checkprovisioned confirmation](../../common/img/copy-check-provisioned-confirmation.png)
 
-TODO: Add instructions on how to change the code
+1. Click on ***Configuration*** -> ***Edit this Method***
+
+    ![edit check provisioned method](../../common/img/edit-check-provisioned-method.png)
+
+1. Add the end of the code, add the following snippet:
+
+        vm = task.vm
+        $evm.log("info","Current IP Addresses: #{vm.ipaddresses}") unless vm.nil?
+        $evm.log("info", "VM is still nil") if vm.nil?
+
+        if not vm.nil?
+        if task.destination.ipaddresses.empty?
+            $evm.root['ae_result']         = 'retry'
+            $evm.root['ae_retry_interval'] = '1.minute'
+        end
+        end
+
+    This code will go into an additional retry, if the Virtual Machine does not have an IP address (yet).
+
+1. The method should look like this now.
+
+    ![updated check provisioned method](../../commong/updated-check-provisioned-method.png)
+
+1. Click on ***Validate*** to perform a basic syntax check and ***Save*** if no errors were found.
 
 ### Create the Ansible Playbook Method
 
@@ -1146,7 +1171,7 @@ Starting with CloudForms 4.6 we can create Methods of type "Playbook" which, ins
 
 ### Modify the Schema
 
-To run the Ansible Playbook during Virtual Machine Provisioning, we have to add an additional state to the State Machine. 
+To run the Ansible Playbook during Virtual Machine Provisioning, we have to add an additional state to the State Machine.
 
 1. Switch to the ***Schema*** tab of the page
 
@@ -1156,7 +1181,87 @@ To run the Ansible Playbook during Virtual Machine Provisioning, we have to add 
 
     ![edit selected schema](../../common/img/edit-provision-class-schema.png)
 
-TODO: Missing steps here
+1. Add a new row with the following details:
+
+    ***Name:*** InstallPackage
+
+    ***Type:*** State
+
+    ***Data Type:*** Method
+
+    ***Default Value:*** /Infrastructure/VM/Provisioning/StateMachines/Methods/install_package
+
+1. Click the little check mark symbol at the beginning of the row to apply the change
+
+1. Click ***Save*** to save the new Schema
+
+1. After the change was applied, the updated Schema should look like this:
+
+    ![after updating schmea](../../common/img/after-updating-provisioning-schema.png)
+
+    :heavy_check_mark: ***NOTE*** There is a new line "InstallPackage" at the bottom of the table
+
+    :warning: ***WARNING*** Do not try to continue with the next step, if you do not see the new "InstallPackage" line.
+
+### Change Schema Sequence
+
+To execute this new state after the Virtual Machine was created, we have to change the sequence.
+
+1. Click on ***Configuration*** -> ***Edit Sequence***
+
+    ![edit sequence of VM provisioning](../../common/img/edit-provisioning-sequence.png)
+
+1, Use the arrow buttons to move the line "InstallPackage" between "CheckProvisioned" and "PostProvision"
+
+    ![move InstallPackage state in sequence](../../common/img/move-installpackage-in-sequence.png)
+
+1. Click ***Save*** to apply the Schema sequence change
+
+### Test the updated Virtual Machine Provisioning State Machine
+
+We want to verify the applied changed by deploying a Virtual Machine and check if httpd was actually installed properly.
+
+1. Navigate to ***Compute*** -> ***Infrastructure*** -> ***Virtual Machines***
+
+    ![navigate to infrastructure virtual machines](../../common/img/navigate-compute-infrastructure-vms.png)
+
+1. Click on ***Lifecycle*** -> ***Provision VMs***
+
+    ![provision VMs](../../common/img/lifecyle-provision-vms.png)
+
+1. Select the "RHEL7" template
+
+    ![select rhel7 template](../../common/img/select-rhel7-template.png)
+
+1. On the ***Requests*** tab the email address is the only required field. Enter your email address and optionally enter some data into the other fields as well
+
+    ![provisioning details](../../common/img/provisioning-details.png)
+
+1. Switch to the ***Catalog*** tab and specify a VM name
+
+    :warning: ***WARNING** Make sure to not use an existing name or provisioning will fail. You can use "changeme" and CloudForms will automatically assign a name to the Virtual Machine.
+
+    ![provisioning catalog](../../common/img/provisioning-catalog.png)
+
+1. Switch to the ***Environment*** tab and check the following fields:
+
+    ***Choose Automatically:*** not selected
+
+    ***Datacenter:*** Default
+
+    ***Cluser:*** Default
+
+    ***Host:*** rhv1
+
+    ***Datastore:*** data
+
+    ![provisioning environment](../../common/img/provisioning-environment.png)
+
+1. Click ***Submit*** to place your request
+
+1. You will be redirected to the Requests page. You can use the ***Refresh*** button on the top of the page, since it does not automatically reload, to watch your request progressing.
+
+1. TODO: instructions on how to verify
 
 ## Build a Service Catalog to create and delete users
 
