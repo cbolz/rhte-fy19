@@ -1,68 +1,68 @@
-# Lab Introduction
+# 1. Lab Introduction
 
 <!-- TOC -->
 
-- [Lab Introduction](#lab-introduction)
-    - [Introduction to CloudForms](#introduction-to-cloudforms)
-        - [Access the lab environment](#access-the-lab-environment)
-    - [Verify Lab](#verify-lab)
-        - [Red Hat Virtualization Provider status](#red-hat-virtualization-provider-status)
-    - [CloudForms with Ansible batteries included](#cloudforms-with-ansible-batteries-included)
-        - [Introduction to Ansible](#introduction-to-ansible)
-        - [Value provided by a Service Catalog](#value-provided-by-a-service-catalog)
-        - [Service Basics](#service-basics)
-        - [Power on target VM](#power-on-target-vm)
-        - [Make sure embedded Ansible role is enabled and running](#make-sure-embedded-ansible-role-is-enabled-and-running)
-        - [Add a Git repository of Ansible Playbooks](#add-a-git-repository-of-ansible-playbooks)
-        - [Store Virtual Machine Credentials](#store-virtual-machine-credentials)
-        - [Create an Ansible Service Catalog](#create-an-ansible-service-catalog)
-        - [Create a Service Catalog Item](#create-a-service-catalog-item)
-        - [Test the Service Catalog Item](#test-the-service-catalog-item)
-    - [Add a button to a Virtual Machine](#add-a-button-to-a-virtual-machine)
-        - [Add a Button Group](#add-a-button-group)
-        - [Add a new Button to the Button Group](#add-a-new-button-to-the-button-group)
-        - [Test the Ansible Button Customization](#test-the-ansible-button-customization)
-    - [Button visibility and enablement](#button-visibility-and-enablement)
-        - [Button enablement](#button-enablement)
-        - [Button visibility](#button-visibility)
-        - [Role based access control](#role-based-access-control)
-        - [Configure Enablement](#configure-enablement)
-        - [Configure Visibility](#configure-visibility)
-    - [Improve the Service Dialog](#improve-the-service-dialog)
-        - [Edit the Service Dialog](#edit-the-service-dialog)
-        - [Create improved Service Catalog Item](#create-improved-service-catalog-item)
-        - [Update the Button definition](#update-the-button-definition)
-        - [Test the improved Button](#test-the-improved-button)
-    - [Run an Ansible Playbook during VM provisioning](#run-an-ansible-playbook-during-vm-provisioning)
-        - [Create a new Automate Domain](#create-a-new-automate-domain)
-        - [Copy VM Provisioning State Machine](#copy-vm-provisioning-state-machine)
-        - [Copy CheckProvisioned Method](#copy-checkprovisioned-method)
-        - [Create the Ansible Playbook Method](#create-the-ansible-playbook-method)
-        - [Modify the Schema](#modify-the-schema)
-        - [Change Schema Sequence](#change-schema-sequence)
-        - [Test the updated Virtual Machine Provisioning State Machine](#test-the-updated-virtual-machine-provisioning-state-machine)
-    - [Advanced labs](#advanced-labs)
-        - [Use the Self Service user Interface](#use-the-self-service-user-interface)
-        - [Build a button to execute remote commands](#build-a-button-to-execute-remote-commands)
-            - [The use case](#the-use-case)
-            - [Service Dialog](#service-dialog)
-            - [Service Catalog Item](#service-catalog-item)
-            - [Button](#button)
-            - [Improve it further](#improve-it-further)
-            - [Need Help?](#need-help)
-    - [Even more?](#even-more)
+- [1. Lab Introduction](#1-lab-introduction)
+    - [1.1. Introduction to CloudForms](#11-introduction-to-cloudforms)
+        - [1.1.1. Access the lab environment](#111-access-the-lab-environment)
+    - [1.2. Verify Lab](#12-verify-lab)
+        - [1.2.1. Red Hat Virtualization Provider status](#121-red-hat-virtualization-provider-status)
+    - [1.3. CloudForms with Ansible batteries included](#13-cloudforms-with-ansible-batteries-included)
+        - [1.3.1. Introduction to Ansible](#131-introduction-to-ansible)
+        - [1.3.2. Value provided by a Service Catalog](#132-value-provided-by-a-service-catalog)
+        - [1.3.3. Service Basics](#133-service-basics)
+        - [1.3.4. Power on target VM](#134-power-on-target-vm)
+        - [1.3.5. Make sure embedded Ansible role is enabled and running](#135-make-sure-embedded-ansible-role-is-enabled-and-running)
+        - [1.3.6. Add a Git repository of Ansible Playbooks](#136-add-a-git-repository-of-ansible-playbooks)
+        - [1.3.7. Store Virtual Machine Credentials](#137-store-virtual-machine-credentials)
+        - [1.3.8. Create an Ansible Service Catalog](#138-create-an-ansible-service-catalog)
+        - [1.3.9. Create a Service Catalog Item](#139-create-a-service-catalog-item)
+        - [1.3.10. Test the Service Catalog Item](#1310-test-the-service-catalog-item)
+    - [1.4. Add a button to a Virtual Machine](#14-add-a-button-to-a-virtual-machine)
+        - [1.4.1. Add a Button Group](#141-add-a-button-group)
+        - [1.4.2. Add a new Button to the Button Group](#142-add-a-new-button-to-the-button-group)
+        - [1.4.3. Test the Ansible Button Customization](#143-test-the-ansible-button-customization)
+    - [1.5. Button visibility and enablement](#15-button-visibility-and-enablement)
+        - [1.5.1. Button enablement](#151-button-enablement)
+        - [1.5.2. Button visibility](#152-button-visibility)
+        - [1.5.3. Role based access control](#153-role-based-access-control)
+        - [1.5.4. Configure Enablement](#154-configure-enablement)
+        - [1.5.5. Configure Visibility](#155-configure-visibility)
+    - [1.6. Improve the Service Dialog](#16-improve-the-service-dialog)
+        - [1.6.1. Edit the Service Dialog](#161-edit-the-service-dialog)
+        - [1.6.2. Create improved Service Catalog Item](#162-create-improved-service-catalog-item)
+        - [1.6.3. Update the Button definition](#163-update-the-button-definition)
+        - [1.6.4. Test the improved Button](#164-test-the-improved-button)
+    - [1.7. Run an Ansible Playbook during VM provisioning](#17-run-an-ansible-playbook-during-vm-provisioning)
+        - [1.7.1. Create a new Automate Domain](#171-create-a-new-automate-domain)
+        - [1.7.2. Copy VM Provisioning State Machine](#172-copy-vm-provisioning-state-machine)
+        - [1.7.3. Copy CheckProvisioned Method](#173-copy-checkprovisioned-method)
+        - [1.7.4. Create the Ansible Playbook Method](#174-create-the-ansible-playbook-method)
+        - [1.7.5. Modify the Schema](#175-modify-the-schema)
+        - [1.7.6. Change Schema Sequence](#176-change-schema-sequence)
+        - [1.7.7. Test the updated Virtual Machine Provisioning State Machine](#177-test-the-updated-virtual-machine-provisioning-state-machine)
+    - [1.8. Advanced labs](#18-advanced-labs)
+        - [1.8.1. Use the Self Service user Interface](#181-use-the-self-service-user-interface)
+        - [1.8.2. Build a button to execute remote commands](#182-build-a-button-to-execute-remote-commands)
+            - [1.8.2.1. The use case](#1821-the-use-case)
+            - [1.8.2.2. Service Dialog](#1822-service-dialog)
+            - [1.8.2.3. Service Catalog Item](#1823-service-catalog-item)
+            - [1.8.2.4. Button](#1824-button)
+            - [1.8.2.5. Improve it further](#1825-improve-it-further)
+            - [1.8.2.6. Need Help?](#1826-need-help)
+    - [1.9. Even more?](#19-even-more)
 
 <!-- /TOC -->
 
-## Introduction to CloudForms
+## 1.1. Introduction to CloudForms
 
 [Red Hat CloudForms](http://www.redhat.com/cloudforms) is an infrastructure management platform that offers a consistent way to track costs, control resource allocation, and ensure compliance across all your networked environments. Manage Virtual Machines, containers, and your clouds in the same way with a single tool.
 
-In this lab we will focus on he Ansible features provided by CloudForms. We will setup the embedded Ansible role, create Service Catalog Items for Ansible Playbooks, and demonstrate how the CloudForms UI can be exteded with custom menus and buttons.
+In this lab we will focus on he Ansible features provided by CloudForms. We will setup the embedded Ansible role, create Service Catalog Items for Ansible Playbooks, and demonstrate how the CloudForms UI can be extended with custom menus and buttons.
 
 For more details about CloudForms, you can have a look at the [General introduction](../../common/index.md).
 
-### Access the lab environment
+### 1.1.1. Access the lab environment
 
 TODO: Update for RHTE FY19 process
 
@@ -76,7 +76,7 @@ TODO: Update for RHTE FY19 process
 
 Log into RHDPS and order the Lab from the Service Catalog as follows:
 
-1. Log in to the [Red Hat Product Demo System](https://rhpds.redhat.com/) with your provided credentials. 
+1. Log in to the [Red Hat Product Demo System](https://rhpds.redhat.com/) with your provided credentials.
 
     ![RHPDS](../../common/img/rhpds_login.png)
 
@@ -94,13 +94,13 @@ Log into RHDPS and order the Lab from the Service Catalog as follows:
 
 1. Please, read carefully all of the information on the resulting page, check the box to confirm you understood the runtime warning message, and then click *Submit*.
 
-:warning: ***WARNING*** It takes about 20 ~ 25 minutes for the demo to load completely and become accessible. Wait for the full demo to load, even if some of its systems are marked "Up.". Watch for an email with information about how to access your demo environment. Make note of the email's contents: a list of hostnames, IP addresses, and your GUID. Whenever you see <GUID> in the demo instructions, replace it with the GUID provided in the email. You can get real-time updates and status of your demo environment at [https://www.opentlc.com/rhpds-status](https://www.opentlc.com/rhpds-status).
+:warning: ***WARNING*** It takes about 20 ~ 25 minutes for the demo to load completely and become accessible. Wait for the full demo to load, even if some of its systems are marked "Up.". Watch for an email with information about how to access your demo environment. Make note of the email's contents: a list of hostnames, IP addresses, and your GUID. Whenever you see &lt;GUID&gt; in the demo instructions, replace it with the GUID provided in the email. You can get real-time updates and status of your demo environment at [https://www.opentlc.com/rhpds-status](https://www.opentlc.com/rhpds-status).
 
 :heavy_check_mark: ***NOTE*** Be mindful of the runtime of your demo environment! It may take several hours to complete the demo, so you may need to extend the runtime. This is especially important in later steps when you are building virtual machines. For information on how to extend runtime and lifetime, see https://www.opentlc.com/lifecycle.
 
-## Verify Lab
+## 1.2. Verify Lab
 
-Let's start by verifying the status of all providers. Use the URL as desplained before and the provided login credentials.
+Let's start by verifying the status of all providers. Use the URL as explained before and the provided login credentials.
 
 ![CloudForms login page](../../common/img/cloudforms-login-page.png)
 
@@ -129,7 +129,7 @@ Container Providers:
 
 Let's first verify the providers you have available and check their health status.
 
-### Red Hat Virtualization Provider status
+### 1.2.1. Red Hat Virtualization Provider status
 
 Let's then check the RHV Provider:
 
@@ -161,11 +161,11 @@ Wait a few moments before you reload the page, the provider tile should show a g
 
 :warning: ***WARNING*** If the provider icon does not show a green check mark, consult an instructor before you continue with the lab!
 
-## CloudForms with Ansible batteries included
+## 1.3. CloudForms with Ansible batteries included
 
-This first excersie of the lab will guide you through the process of creating a Service Catalog Item based on an Ansible Playbook.
+This first exercise of the lab will guide you through the process of creating a Service Catalog Item based on an Ansible Playbook.
 
-### Introduction to Ansible
+### 1.3.1. Introduction to Ansible
 
 Today, every business is a digital business. Technology is your innovation engine, and delivering your applications faster helps you win. Historically, that required a lot of manual effort and complicated coordination. But today, there is Ansible - the simple, yet powerful IT automation engine that thousands of companies are using to drive complexity out of their environments and accelerate DevOps initiatives.
 
@@ -173,13 +173,13 @@ Red Hat CloudForms can integrate with IaaS, PaaS, public and private cloud, and 
 
 This integration give customers the capability to build Service Catalogs from Ansible Playbooks to allow end users to easily browse, order and manage resources from Ansible. Ansible Playbooks can be used in Control Policies which can not only detect problems, but also automatically fix them. The User Interface of CloudForms can be extended seamless with additional menus and buttons, which utilize Ansible Playbooks to perform user initiated tasks.
 
-### Value provided by a Service Catalog
+### 1.3.2. Value provided by a Service Catalog
 
 One of the features a Cloud Management Platform provides, is a Self Service User Interface. From the Service Catalog users can order, manage and retire Services. Services are categorized in Catalogs, where they can be organized and easily consumed.
 
 By providing a Service Catalog, users can deploy the Services they need quickly and easily. This helps to improve agility, reduce provisioning time and free up resources in internal IT.
 
-### Service Basics
+### 1.3.3. Service Basics
 
 But first some basics. Four items are required to make a Service available to users from the CloudForms Self Service Catalog:
 
@@ -201,7 +201,7 @@ But first some basics. Four items are required to make a Service available to us
 
 We can also use Role Based Access Control to make certain Service Catalog Items available only to specific groups of users.
 
-### Power on target VM
+### 1.3.4. Power on target VM
 
 The following lab will use UI customizations to illustrate how easy it is to add additional functionality to CloudForms. The example will use an Ansible Playbook which will be executed on a Virtual Machine. Ansible uses SSH to access the remote machine and therefore the VM has to be powered on. The following steps will power on a Virtual Machine which we later use as the target for the Ansible Playbook.
 
@@ -231,7 +231,7 @@ The following lab will use UI customizations to illustrate how easy it is to add
 
 Now our test VM is up and running and we can proceed with the next steps.
 
-### Make sure embedded Ansible role is enabled and running
+### 1.3.5. Make sure embedded Ansible role is enabled and running
 
 Before we continue, we want to make sure the embedded Ansible role is enabled and running.
 
@@ -255,7 +255,7 @@ Before we continue, we want to make sure the embedded Ansible role is enabled an
 
 ![restart CloudForms Server](../../common/img/restart-server.png)
 
-### Add a Git repository of Ansible Playbooks
+### 1.3.6. Add a Git repository of Ansible Playbooks
 
 To be able to run Ansible Playbooks, they have to become available in CloudForms. Custom git repositories can be used as well as GitHub, GitLab or others. Other Source Control Management Systems like Subversion or Mercurial are planned for later versions.
 
@@ -299,7 +299,7 @@ To be able to run Ansible Playbooks, they have to become available in CloudForms
 
 1. Verify the task completed successfully
 
-    ![after Ansible repo task compled](../../common/img/task-ansible-repo-import-completed.png)
+    ![after Ansible repo task completed](../../common/img/task-ansible-repo-import-completed.png)
 
 1. Navigate back to ***Automation*** -> ***Ansible*** -> ***Repositories***.
 
@@ -319,7 +319,7 @@ To be able to run Ansible Playbooks, they have to become available in CloudForms
 
 This confirms that all playbooks have been imported successfully.
 
-### Store Virtual Machine Credentials
+### 1.3.7. Store Virtual Machine Credentials
 
 Ansible is using SSH by default to perform actions on the target machine. To be able to login, it has to know the login credentials.
 
@@ -349,7 +349,7 @@ Ansible is using SSH by default to perform actions on the target machine. To be 
 
     ***Password:*** `<to_be_provided>`
 
-    Passwrds are stored encrypted in the CloudForms database.
+    Passwords are stored encrypted in the CloudForms database.
 
     ![provide VM credentials](../../common/img/ansible-vm-credentials.png)
 
@@ -357,7 +357,7 @@ Ansible is using SSH by default to perform actions on the target machine. To be 
 
     Once more this is an action which is preformed in the background and it can take a few seconds until you can see the new credentials in the Web UI.
 
-### Create an Ansible Service Catalog
+### 1.3.8. Create an Ansible Service Catalog
 
 To offer a Service Catalog Item to users, they have to be organized in Service Catalogs. Create one by following these steps:
 
@@ -385,7 +385,7 @@ To offer a Service Catalog Item to users, they have to be organized in Service C
 
 1. Click on ***Add*** to save the new Catalog
 
-### Create a Service Catalog Item
+### 1.3.9. Create a Service Catalog Item
 
 In the following step we create a Service Catalog Item which will execute an Ansible Playbook.
 
@@ -429,7 +429,7 @@ In the following step we create a Service Catalog Item which will execute an Ans
 
     ***Repository:*** Github
 
-    The actual Playbook which will be exected when the Service Catalog Item is ordered.
+    The actual Playbook which will be executed when the Service Catalog Item is ordered.
 
     ***Playbook:*** playbooks/InstallPackage.yml
 
@@ -437,11 +437,11 @@ In the following step we create a Service Catalog Item which will execute an Ans
 
     ***Machine Credentials:*** Virtual Machine credentials
 
-    Ansible Playbooks can use variables which gives us more flexiblity. In this example the package name is not hard coded, but can be set and changed from a variable:
+    Ansible Playbooks can use variables which gives us more flexibility. In this example the package name is not hard coded, but can be set and changed from a variable:
 
     ***Variables & Default Values***: add one new entry with:
 
-    Since a Playbook can have multiple variables, you can add multiple lines. 
+    Since a Playbook can have multiple variables, you can add multiple lines.
 
     ***Variable:*** package_name
 
@@ -457,7 +457,7 @@ In the following step we create a Service Catalog Item which will execute an Ans
 
 1. Click ***Add*** to save all changes
 
-### Test the Service Catalog Item
+### 1.3.10. Test the Service Catalog Item
 
 We want to make sure the resulting Service Catalog Item actually works.
 
@@ -477,7 +477,7 @@ We want to make sure the resulting Service Catalog Item actually works.
 
 1. Select the following options:
 
-    These are the credantials stored in CloudForms earlier, to log into the target machine:
+    These are the credentials stored in CloudForms earlier, to log into the target machine:
 
     ***Machine Credentials:*** Virtual Machine Credentials
 
@@ -485,11 +485,11 @@ We want to make sure the resulting Service Catalog Item actually works.
 
     ***Hosts:*** localhost (should already be the default)
 
-    The varaible specified when creating the Service Catalog Item, which can be overriden by the end user during order:
+    The variable specified when creating the Service Catalog Item, which can be overriden by the end user during order:
 
     ***package_name:*** httpd (should already be the default)
 
-    ![parameters for the Ansible InstsallPackage Playboosk](../../common/img/installpackage-order.png)
+    ![parameters for the Ansible InstallPackage Playbook](../../common/img/installpackage-order.png)
 
 1. Click on ***Submit***
 
@@ -517,11 +517,11 @@ We want to make sure the resulting Service Catalog Item actually works.
 
 This concludes this part of the lab.
 
-## Add a button to a Virtual Machine
+## 1.4. Add a button to a Virtual Machine
 
 CloudForms can easily be extended by adding additional menus and buttons. This allows seamless integration of customizations and making them available to end users.
 
-### Add a Button Group
+### 1.4.1. Add a Button Group
 
 To add new button to the UI, we first need to create a Button Group. A Button Group is basically a new menu entry in the UI. Buttons and Button Groups can be assigned to several objects in CloudForms.
 
@@ -535,7 +535,7 @@ To add new button to the UI, we first need to create a Button Group. A Button Gr
 
 1. Click on ***VM and Instance***
 
-    ![naviate to vm and instance](../../common/img/navigate-vm-ane-instance.png)
+    ![navigate to vm and instance](../../common/img/navigate-vm-ane-instance.png)
 
 1. Click on ***Configuration*** -> ***Add a new Button Group***
 
@@ -561,7 +561,7 @@ To add new button to the UI, we first need to create a Button Group. A Button Gr
 
 In the next section we will add a button to the group.
 
-### Add a new Button to the Button Group
+### 1.4.2. Add a new Button to the Button Group
 
 The previous step created a Button Group, or menu. Now we want add Buttons to the Group:
 
@@ -613,7 +613,7 @@ The previous step created a Button Group, or menu. Now we want add Buttons to th
 
 This adds a new Button to the Button Group "Tools".
 
-### Test the Ansible Button Customization
+### 1.4.3. Test the Ansible Button Customization
 
 We want to test the resulting customization and see how it works from a user point of view.
 
@@ -623,11 +623,11 @@ We want to test the resulting customization and see how it works from a user poi
 
 1. Click on the "cfme001" tile if not already selected
 
-    ![VM cfme001 is turned on](../../common/img/cfme-001-powered-on-ovwerview.png)
+    ![VM cfme001 is turned on](../../common/img/cfme-001-powered-on-overview.png)
 
 1. On the details page of "cfme001" note the new menu "Tools". Click to see the new button "Install Package"
 
-    ![VM with addtional tools menu](../../common/img/cfme-001-tools-button.png)
+    ![VM with additional tools menu](../../common/img/cfme-001-tools-button.png)
 
 1. Click on ***Tools*** -> ***Install Package***
 
@@ -655,23 +655,23 @@ We want to test the resulting customization and see how it works from a user poi
 
 This concludes this part of the Ansible lab.
 
-## Button visibility and enablement
+## 1.5. Button visibility and enablement
 
 Starting with CloudForms 4.6, we can make custom buttons visible if certain requirements are met. We can also make the button active or inactive as needed. Both features significantly improve the user experience by simplifying the interface and making it more dynamic.
 
-### Button enablement
+### 1.5.1. Button enablement
 
 The Enablement expression is validated to enable or disable the button based on the specified check. This allows you to enable the button only if some specific requirements are met. In the example below, we want to run an Ansible Playbook inside the VM. The expression validates the VM Power State and the button will be disabled if the VM is not powered on. An additional text will inform the user why the button is disabled and how to solve the issue.
 
-### Button visibility
+### 1.5.2. Button visibility
 
 The Visibility allows you to define an expression which is validated to decide if the button should be shown at all. For example, if the guest Operating System is not Linux, the Ansible Playbook used will not work. If CloudForms detects a non-Linux VM, the menu will not be shown at all.
 
-### Role based access control
+### 1.5.3. Role based access control
 
 Note that the visibility settings on the bottom of the dialog are the same as in previous versions. This option allows us to make the button only available for certain user roles, for example administrators, operators or normal users.
 
-### Configure Enablement
+### 1.5.4. Configure Enablement
 
 Let's configure an regular expression which verifies the Virtual Machine is powered on.
 
@@ -699,7 +699,7 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 
     ![enablement expression power on](../../common/img//enablement-expression-power-on.png)
 
-    :warning: ***WARINING*** Don't forget to click on the check mark to save the expression!
+    :warning: ***WARNING*** Don't forget to click on the check mark to save the expression!
 
 1. Add Disabled Button Text: VM must be powered on to run Ansible Playbook
 
@@ -707,7 +707,7 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 
 1. Click ***Save***
 
-### Configure Visibility
+### 1.5.5. Configure Visibility
 
 The install package Playbook will only work on RHEL 7 Virtual Machines. It will fail on RHEL 6 Virtual Machines, because the lab internal YUM mirror does not have a copy of the relevant channels.
 
@@ -735,19 +735,19 @@ Since this is a known limitation, it is a good idea to not show the button if th
 
     ![Visibility expression](../../common/img/visibility-expression-rhel7.png)
 
-    :warning: ***WARINING*** Don't forget to click on the check mark to save the expression!
+    :warning: ***WARNING*** Don't forget to click on the check mark to save the expression!
 
     ![save enablement expression](../../common/img/save-visibility-expression.png)
 
 1. Click ***Save***
 
-## Improve the Service Dialog
+## 1.6. Improve the Service Dialog
 
 The automatically generated Service Dialog is not perfect. It might confuse the user with too many input fields. It asks for the "Machine Credentials", but those have already been defined in the Service Catalog Item. It also asks for the "Host", but this one is automatically adjusted to be the selected Virtual Machine. And finally the field "package_name" could benefit from a more descriptive text.
 
 In the following steps, we want to make the Service Dialog more user friendly by simplifying it.
 
-### Edit the Service Dialog
+### 1.6.1. Edit the Service Dialog
 
 1. Navigate to ***Automation*** -> ***Automate*** -> ***Customization***
 
@@ -801,7 +801,7 @@ In the following steps, we want to make the Service Dialog more user friendly by
 
     ***Label:*** Enter Package Name
 
-    :warning: ***WARINING*** Do not change the field "Name" - it is the name of the variable used internally by CLoudForms and the Ansible Playbook. if you change the name of this field, the Playbook will not pickup the new variable and hence ignore the user input.
+    :warning: ***WARNING*** Do not change the field "Name" - it is the name of the variable used internally by CLoudForms and the Ansible Playbook. if you change the name of this field, the Playbook will not pickup the new variable and hence ignore the user input.
 
 1. Also let's give more information to the user by improving the "Help" text:
 
@@ -817,7 +817,7 @@ In the following steps, we want to make the Service Dialog more user friendly by
 
 This concludes this part of the lab.
 
-### Create improved Service Catalog Item
+### 1.6.2. Create improved Service Catalog Item
 
 To be able to use the new Service Dialog with our button, we first have to create an additional Service Catalog Item, which points to the Service Dialog.
 
@@ -869,7 +869,7 @@ To be able to use the new Service Dialog with our button, we first have to creat
 
 1. Click ***Add*** to save all changes
 
-### Update the Button definition
+### 1.6.3. Update the Button definition
 
 As the last step, we have to change the definition of our button, to point to the just created Service Catalog Item.
 
@@ -893,7 +893,7 @@ As the last step, we have to change the definition of our button, to point to th
 
 1. Click ***Save*** to store all changes
 
-### Test the improved Button
+### 1.6.4. Test the improved Button
 
 1. Navigate to ***Compute*** -> ***Infrastructure*** -> ***Virtual Machines***
 
@@ -901,11 +901,11 @@ As the last step, we have to change the definition of our button, to point to th
 
 1. Click on the "cfme001" tile if not already selected
 
-    ![VM cfme001 is turned on](../../common/img/cfme-001-powered-on-ovwerview.png)
+    ![VM cfme001 is turned on](../../common/img/cfme-001-powered-on-overview.png)
 
 1. On the details page of "cfme001" click on ***Tools*** -> ***Install Package***
 
-    ![VM with addtional tools menu](../../common/img/cfme-001-tools-button.png)
+    ![VM with additional tools menu](../../common/img/cfme-001-tools-button.png)
 
 1. Click on ***Tools*** -> ***Install Package***
 
@@ -933,13 +933,13 @@ This concludes this part of the Ansible lab.
 
 :+1: ***OPTIONAL*** Feel free to repeat this part of the lab with a different package name. You could use "screen" as an example instead of httpd - or some other package you want to install.
 
-## Run an Ansible Playbook during VM provisioning
+## 1.7. Run an Ansible Playbook during VM provisioning
 
 With the integration of Ansible into CloudForms, we want to make it easier for customers and partners to modify out of the box behavior and make it easy to integrate with third party solutions.
 
 In this part of the lab, we want to run an Ansible Playbook during VM provisioning to show how to modify the State Machine and how we can use Ansible Playbooks.
 
-### Create a new Automate Domain
+### 1.7.1. Create a new Automate Domain
 
 Since the Automate Domains shipped with CloudForms are read only, we have to create our own Domain first.
 
@@ -963,7 +963,7 @@ Since the Automate Domains shipped with CloudForms are read only, we have to cre
 
 1. Click ***Add***
 
-### Copy VM Provisioning State Machine
+### 1.7.2. Copy VM Provisioning State Machine
 
 To be able to make changes to the State Machine, we have to copy it to our writeable Domain first.
 
@@ -975,7 +975,7 @@ To be able to make changes to the State Machine, we have to copy it to our write
 
 1. Click on ***Configuration*** -> ***Copy this Instance***
 
-    ![copy provision from template instance](../../common/img/copy-provivision-vm-from-template-instance.png)
+    ![copy provision from template instance](../../common/img/copy-provision-vm-from-template-instance.png)
 
     :warning: ***WARNING*** Make sure you highlight the "Provision VM from Template (template)" instance when initiating the copy!
 
@@ -989,13 +989,13 @@ To be able to make changes to the State Machine, we have to copy it to our write
 
     ![confirmation of copy](../../common/img/confirmation-copy-provision-instance.png)
 
-### Copy CheckProvisioned Method
+### 1.7.3. Copy CheckProvisioned Method
 
 The out of the box code of CloudForms will assume a VM was properly created, when it was successfully copied. Since we want to run an Ansible Playbook inside the deployed Virtual Machine, we have to add an additional check. The State Machine should only continue if the VM has an IP address assigned.
 
 1. We also need a copy of the CheckProvisioned method, to do that, navigate to     ***ManageIQ*** -> ***Infrastructure*** -> ***VM*** -> ***Provisioning*** -> ***StateMachines*** -> ***Methods*** -> ***CheckProvisioned (check_provisioned)***
 
-    ![navigate to check provisioned](../../common/img/navgiate-to-checkprovisioned.png)
+    ![navigate to check provisioned](../../common/img/navigate-to-checkprovisioned.png)
 
 1. Click on ***Configuration*** -> ***Copy this Method***
 
@@ -1030,11 +1030,11 @@ The out of the box code of CloudForms will assume a VM was properly created, whe
 
 1. The method should look like this now.
 
-    ![updated check provisioned method](../../commong/updated-check-provisioned-method.png)
+    ![updated check provisioned method](../../common/img/updated-check-provisioned-method.png)
 
 1. Click on ***Validate*** to perform a basic syntax check and ***Save*** if no errors were found.
 
-### Create the Ansible Playbook Method
+### 1.7.4. Create the Ansible Playbook Method
 
 Starting with CloudForms 4.6 we can create Methods of type "Playbook" which, instead of running Ruby code, execute an Ansible Playbook.
 
@@ -1050,13 +1050,13 @@ Starting with CloudForms 4.6 we can create Methods of type "Playbook" which, ins
 
     ***Name:*** install_package
 
-    ***Display Name:*** Intall Package
+    ***Display Name:*** Install Package
 
     ***Repository:*** Github
 
     ***Playbook:*** playbooks/InstallPackage.yml
 
-    ***Machine Credentials:*** VIrtual Machine Credentials
+    ***Machine Credentials:*** Virtual Machine Credentials
 
     ***Hosts:*** Specify host values and enter the following string into the text field:
 
@@ -1094,7 +1094,7 @@ Starting with CloudForms 4.6 we can create Methods of type "Playbook" which, ins
 
 1. Click ***Add*** to save the Instance
 
-### Modify the Schema
+### 1.7.5. Modify the Schema
 
 To run the Ansible Playbook during Virtual Machine Provisioning, we have to add an additional state to the State Machine.
 
@@ -1122,13 +1122,13 @@ To run the Ansible Playbook during Virtual Machine Provisioning, we have to add 
 
 1. After the change was applied, the updated Schema should look like this:
 
-    ![after updating schmea](../../common/img/after-updating-provisioning-schema.png)
+    ![after updating schema](../../common/img/after-updating-provisioning-schema.png)
 
     :heavy_check_mark: ***NOTE*** There is a new line "InstallPackage" at the bottom of the table
 
     :warning: ***WARNING*** Do not try to continue with the next step, if you do not see the new "InstallPackage" line.
 
-### Change Schema Sequence
+### 1.7.6. Change Schema Sequence
 
 To execute this new state after the Virtual Machine was created, we have to change the sequence.
 
@@ -1142,7 +1142,7 @@ To execute this new state after the Virtual Machine was created, we have to chan
 
 1. Click ***Save*** to apply the Schema sequence change
 
-### Test the updated Virtual Machine Provisioning State Machine
+### 1.7.7. Test the updated Virtual Machine Provisioning State Machine
 
 We want to verify the applied changed by deploying a Virtual Machine and check if httpd was actually installed properly.
 
@@ -1174,7 +1174,7 @@ We want to verify the applied changed by deploying a Virtual Machine and check i
 
     ***Datacenter:*** Default
 
-    ***Cluser:*** Default
+    ***Cluster:*** Default
 
     ***Host:*** rhv1
 
@@ -1192,15 +1192,15 @@ We want to verify the applied changed by deploying a Virtual Machine and check i
 
         :heavy_check_mark: ***NOTE*** If you do this the first time, your Web Browser might block the Popup Window!
 
-    1. Perform Smart State Analysis: Navigate to the Virtual Machine you just ordered and click on ***Configuration*** -> ***Perform SmartState Analysis***. Thie action can take a few minutes to complete. After it finished, you should see the list of installed packages and can verify httpd is on the list
+    1. Perform Smart State Analysis: Navigate to the Virtual Machine you just ordered and click on ***Configuration*** -> ***Perform SmartState Analysis***. This action can take a few minutes to complete. After it finished, you should see the list of installed packages and can verify httpd is on the list
 
     1. Check the log files: First you will have to SSH into the workstation and from there you can log into CloudForms. You should find the hostnames in the RHPDS details. The Ansible logs can be found in /var/lib/awx/job_status.
 
-## Advanced labs
+## 1.8. Advanced labs
 
 If you were able to complete all the steps and still have some time left, here are a couple of things you can do to get more familiar with CloudForms.
 
-### Use the Self Service user Interface
+### 1.8.1. Use the Self Service user Interface
 
 The user interface we used so far is often referenced as the "Operations UI" or the "Classic UI". A new, more modern, Self Service user Interface is also available and receives improvements with every release.
 
@@ -1210,7 +1210,7 @@ The Self Service user Interface can be accessed by appending the string "self_se
 
 You can login with the same credentials as before.
 
-### Build a button to execute remote commands
+### 1.8.2. Build a button to execute remote commands
 
 You have learned how to create a Service Dialog, Ansible Playbook Service Catalog Item and how to use them from a Button to extend the out of the box features provided by CloudForms. We can use this knowledge to implement a button to allow users to execute remote commands on a Virtual Machine.
 
@@ -1223,29 +1223,29 @@ This is a very popular use case because it provides a number of advantages:
 
 Since this is an advanced lab, there are no detailed step by step instructions. Instead here are couple of pointers to get you on track:
 
-#### The use case
+#### 1.8.2.1. The use case
 
 We want end users to able to run certain remote commands by themselves. First we try this with a text box where users can enter their command - but as an additional improvement you should try to replace the text box with a drop down list, where users can only select from a list of pre approved commands.
 
-#### Service Dialog
+#### 1.8.2.2. Service Dialog
 
-Based on your work with "Install Package" Service Dialog, you should know what is needed to create a new Service Dialog for this use case. 
+Based on your work with "Install Package" Service Dialog, you should know what is needed to create a new Service Dialog for this use case.
 
-Start with a simple copy of your working example. Add a text box to ask the user for the command. It is important that you set the name for the text element correctly. 
+Start with a simple copy of your working example. Add a text box to ask the user for the command. It is important that you set the name for the text element correctly.
 
 :warning: ***WARNING*** Make sure the text box name is called "param_command" - because "command" is the name of the extra variable in the Ansible Playbook. If you chose a different name, the Playbook will use the default command, which is "echo hello world".
 
-#### Service Catalog Item
+#### 1.8.2.3. Service Catalog Item
 
 To be able to call an Ansible Playbook from a button, you need to create a Service Catalog Item first. This should be very easy for you, since you've done this before in this lab. Just make sure you run the correct playbook and use the Service Dialog you created in the previous step.
 
 The name of the Ansible Playbook is "operatorcommand.yaml"
 
-#### Button
+#### 1.8.2.4. Button
 
 Create a new Button and add it to the existing Button Group "Tools" - or create a new one. Use the Service Catalog Item created in the previous step when you define the button.
 
-#### Improve it further
+#### 1.8.2.5. Improve it further
 
 The advanced settings of a Button allow you to use Role Based Access Control. Check the "Role Access" option at the bottom of the settings page.
 
@@ -1257,11 +1257,11 @@ You can use the expression builder to check if the field "VM and Instance: Power
 
 And if you're still having more time, you can use the "Visibility" to show the Button only for Linux VMs, and not for Windows.
 
-#### Need Help?
+#### 1.8.2.6. Need Help?
 
 Don't hesitate to ask any of the lab organizers for help, if you're stuck!
 
-## Even more?
+## 1.9. Even more?
 
 If you're already done and still have some time left, here are some ideas for advanced labs:
 
