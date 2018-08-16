@@ -22,7 +22,7 @@
         - [Add a Button Group](#add-a-button-group)
         - [Add a new Button to the Button Group](#add-a-new-button-to-the-button-group)
         - [Test the Ansible Button Customization](#test-the-ansible-button-customization)
-    - [Add dynamic visibility and enablement](#add-dynamic-visibility-and-enablement)
+    - [Button visibility and enablement](#button-visibility-and-enablement)
         - [Button enablement](#button-enablement)
         - [Button visibility](#button-visibility)
         - [Role based access control](#role-based-access-control)
@@ -655,7 +655,7 @@ We want to test the resulting customization and see how it works from a user poi
 
 This concludes this part of the Ansible lab.
 
-## Add dynamic visibility and enablement
+## Button visibility and enablement
 
 Starting with CloudForms 4.6, we can make custom buttons visible if certain requirements are met. We can also make the button active or inactive as needed. Both features significantly improve the user experience by simplifying the interface and making it more dynamic.
 
