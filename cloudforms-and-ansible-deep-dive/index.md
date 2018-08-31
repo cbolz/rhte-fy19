@@ -1,6 +1,6 @@
 # Lab Overview
 
-## Red Hat CloudForms with Red Hat Ansible Automation — Better together
+## CloudForms and Ansible Deep Dive
 
 Have you heard about the embedded Ansible theme of Red Hat CloudForms? Keen to learn more? Join us in this lab session for hands-on exercises utilizing Red Hat Ansible Automation in CloudForms.
 
