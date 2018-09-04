@@ -677,9 +677,9 @@ Let's configure an regular expression which verifies the Virtual Machine is powe
 
     :heavy_check_mark: ***NOTE*** You should already be in this menu if you followed the previous steps
 
-1. Click on the "Tools" Button Group you created in the previous lab
+1. Click on the "Install Package" Button you created in the previous lab
 
-    ![navigate to tools button group](../../common/img/tools-button-group-overview.png)
+    ![navigate to install package button](../../common/img/navigate-to-install-package-button.png)
 
 1. Click on ***Configuration*** -> ***Edit this Button***
 
