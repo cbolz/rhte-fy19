@@ -86,7 +86,17 @@ This document explains how to access the GuidGrabber in order to obtain a GUID. 
 
 ## Verify Lab
 
-Let's start by verifying the status of all providers. Use the URL as explained before and the provided login credentials.
+Let's start by verifying the status of all providers.
+
+Your CloudForms Appliance can be reached by using the following URL (replace GUID with your specific GDUI):
+
+    http://cf46-GUID.rhpds.opentlc.com
+
+For example, if your GUID is 1234, the URL would be:
+
+    http://cf46-1234.rhpds.opentlc.com
+
+:warning: ***WARNING*** You will automatically be redirected to the HTTPS endpoint of your appliance. Your browser might give you a warning about the self signed certificate, which you can safely ignore.
 
 ![CloudForms login page](../../common/img/cloudforms-login-page.png)
 
