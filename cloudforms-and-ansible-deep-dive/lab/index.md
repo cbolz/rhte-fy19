@@ -1116,7 +1116,7 @@ To run the Ansible Playbook during Virtual Machine Provisioning, we have to add 
 
     ***Type:*** State
 
-    ***Data Type:*** Method
+    ***Data Type:*** String
 
     ***Default Value:*** /Infrastructure/VM/Provisioning/StateMachines/Methods/install_package
 
