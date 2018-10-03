@@ -1,6 +1,6 @@
 # README
 
-This content was presented in the lab "CloudForms and Ansible Deep Dive" at the EMEA Red Hat Technical Exchange 2018 in Prague.
+This content was presented in the lab "CloudForms and Ansible Deep Dive" at the Red Hat Technical Exchange 2018.
 
 The lab is available at:
 
