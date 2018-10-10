@@ -82,6 +82,8 @@ This document explains how to access the GuidGrabber in order to obtain a GUID. 
 
 - When you are completely done with your lab environment, please click *Reset Workstation* so that you can move on to the next lab.  If you fail to do this, you will be locked into the GUID from the previous lab.
 
+:warning: ***WARNING*** Note that no ssh access is provided as it isn't needed to complete the lab
+
 :heavy_check_mark: ***NOTE*** Clicking *Reset Workstation* will not stop or delete the lab environment.
 
 ## Verify Lab
@@ -133,21 +135,21 @@ Let's then check the RHV Provider:
 
     ![navigate to cloud providers](../../common/img/navigate-to-compute-infrastructure-providers.png)
 
-1. You should see a tile icon labeled "RHV". Click on it.
+2. You should see a tile icon labeled "RHV". Click on it.
 
     ![OpenStack provider tile icon](../../common/img/rhv-provider-tile.png)
 
-1. Click on ***Authentication*** -> ***Re-check Authentication Status***
+3. Click on ***Authentication*** -> ***Re-check Authentication Status***
 
     ![re-check authentication](../../common/img/rhv-recheck-authentication.png)
 
     This will validate the credentials are correct, and it will also restart the provider specific background processes.
 
-1. Switch to the ***Summary view*** by clicking the little icon on the top right
+4. Switch to the ***Summary view*** by clicking the little icon on the top right
 
     ![switch to RHV summary view](../../common/img/rhv-summary-view.png)
 
-1. Click the little arrow to reload the page.
+5. Click the little arrow to reload the page.
 
     ![provider page reload](../../common/img/provider-reload.png)
 
@@ -200,6 +202,8 @@ We can also use Role Based Access Control to make certain Service Catalog Items 
 ### Power on target VM
 
 The following lab will use UI customization to illustrate how easy it is to add additional functionality to CloudForms. The example will use an Ansible Playbook which will be executed on a Virtual Machine. Ansible uses SSH to access the remote machine and therefore the VM has to be powered on. The following steps will power on a Virtual Machine which we later use as the target for the Ansible Playbook.
+
+:warning: ***WARNING*** Please note that screenshots doesn't represent the actual name of the machine
 
 1. Navigate to ***Compute*** -> ***Infrastructure*** -> ***Virtual Machines***
 
