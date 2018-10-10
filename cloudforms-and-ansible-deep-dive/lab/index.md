@@ -205,11 +205,11 @@ The following lab will use UI customization to illustrate how easy it is to add 
 
     ![navigate to virtual machines](../../common/img/navigate-to-virtual-machines.png)
 
-1. Tiles represent the Virtual Machines. Note that the VM "cfme001" is powered off.
+1. Tiles represent the Virtual Machines. Note that the VM "rhel 7" is powered off.
 
     ![VM cfme001 is turned off](../../common/img/cfme-001-powered-off.png)
 
-1. Click on the tile icon "cfme001" to see the VM details.
+1. Click on the tile icon "rhel 7" to see the VM details.
 
 1. Click ***Power*** -> ***Power On*** to power on the Virtual Machine
 
@@ -617,11 +617,11 @@ We want to test the resulting customization and see how it works from a user poi
 
     ![navigate to virtual machines](../../common/img/navigate-to-virtual-machines.png)
 
-1. Click on the "cfme001" tile if not already selected
+1. Click on the "rhel 7" tile if not already selected
 
     ![VM cfme001 is turned on](../../common/img/cfme-001-powered-on-overview.png)
 
-1. On the details page of "cfme001" note the new menu "Tools". Click to see the new button "Install Package"
+1. On the details page of "rhel 7" note the new menu "Tools". Click to see the new button "Install Package"
 
     ![VM with additional tools menu](../../common/img/cfme-001-tools-button.png)
 
@@ -895,33 +895,33 @@ As the last step, we have to change the definition of our button, to point to th
 
     ![navigate to virtual machines](../../common/img/navigate-to-virtual-machines.png)
 
-1. Click on the "cfme001" tile if not already selected
+1. Click on the "rhel 7" tile if not already selected
 
     ![VM cfme001 is turned on](../../common/img/cfme-001-powered-on-overview.png)
 
-1. On the details page of "cfme001" click on ***Tools*** -> ***Install Package***
+2. On the details page of "rhel 7" click on ***Tools*** -> ***Install Package***
 
     ![VM with additional tools menu](../../common/img/cfme-001-tools-button.png)
 
-1. Click on ***Tools*** -> ***Install Package***
+3. Click on ***Tools*** -> ***Install Package***
 
     ![Ansible button dialog](../../common/img/ansible-button-improved-dialog.png)
 
     You should see the simplified version of the Dialog. The Package Name has a better description, there is a tool tip if you hover the mouse over the little "i" icon and the redundant fields for "Machine Credentials" and "Hosts" are gone.
 
-1. Click ***Submit*** to execute the Button action
+4. Click ***Submit*** to execute the Button action
 
-1. Navigate to ***Services*** -> ***My Services***
+5. Navigate to ***Services*** -> ***My Services***
 
     ![navigate to Services, My Services](../../common/img/navigate-to-my-services.png)
 
-1. As a result of your action, a new "My Services" object was created. If you don't see it yet, wait a minute and click on the reload button.
+6. As a result of your action, a new "My Services" object was created. If you don't see it yet, wait a minute and click on the reload button.
 
-1. Click on the "Install Playbook" item to see the details
+7. Click on the "Install Playbook" item to see the details
 
     ![details of Ansible Playbook](../../common/img/my-service-ansible-playbook-details-with-updated-button.png)
 
-1. Click on the ***Provisioning*** tab to see output from your Ansible Playbook
+8. Click on the ***Provisioning*** tab to see output from your Ansible Playbook
 
     ![Ansible Playbook output](../../common/img/my-service-ansible-playbook-output-without-change.png)
 
