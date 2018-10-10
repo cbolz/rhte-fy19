@@ -62,6 +62,8 @@ In this lab we will focus on he Ansible features provided by CloudForms. We will
 
 For more details about CloudForms, you can have a look at the [General introduction](../../common/index.md).
 
+Please, also check the new version of the Automation book https://manageiq.gitbook.io/mastering-cloudforms-automation-addendum/preface
+
 ### Access the lab environment
 
 This document explains how to access the GuidGrabber in order to obtain a GUID.  This GUID will be used to access the lab environment.
